@@ -11,7 +11,9 @@
 |
 */
 
-Route::get('/', 'PagesController@root')->name('root');
+Route::get('/', 'ProductController@index')->name('root');
+Route::get('products','ProductController@index')->name('products.index');
+Route::get('products/{product}','ProductController@show')->name('products.show');
 Route::get('test',function (){
     return $_ENV;
 });
@@ -26,5 +28,8 @@ Route::group(['middleware' => ['auth','verified']],function () {
     Route::get('user_addresses/{userAddress}','UserAddressesController@edit')->name('user_addresses.edit');
     Route::put('user_addresses/{userAddress}','UserAddressesController@update')->name('user_addresses.update');
     Route::delete('user_addresses/{userAddress}','UserAddressesController@destroy')->name('user_addresses.destroy');
+
+    Route::post('products/{product}/favorite','ProductController@favor')->name('products.favor');
+    Route::delete('products/{product}/favorite','ProductController@disfavor')->name('products.disfavor');
 });
 
