@@ -17,6 +17,9 @@
                     <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">登录</a></li>
                     <li class="nav-item"><a href="{{ route('register') }}" class="nav-link">注册</a></li>
                 @else
+                    <li class="nav-item">
+                        <a href="{{ route('cart.index') }}" class="nav-link mt-1"><i class="fa fa-shopping-cart"></i></a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a href="" class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
                            data-toggle="dropdown"
@@ -28,6 +31,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a href="{{ route('user_addresses.index') }}" class="dropdown-item">收货地址</a>
+                            <a href="{{ route('products.favorites') }}" class="dropdown-item">我的收藏</a>
                             <a href="#" class="dropdown-item" id="logout"
                                onclick="event.preventDefault();document.getElementById('logout-form').submit()">退出登录</a>
                             <form action="{{ route('logout') }}" id="logot-form" method="post" style="display: none;">

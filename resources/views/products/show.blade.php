@@ -106,9 +106,35 @@
             $('.btn-disfavor').click(function () {
                 axios.delete('{{ route('products.disfavor',['product' => $product->id]) }}')
                     .then(function () {
-                        swal('操作成功','','success')
+                        swal('操作成功', '', 'success')
                     }).then(function () {
                     location.reload();
+                })
+            });
+
+            $('.btn-add-to-cart').click(function () {
+                axios.post('{{ route('cart.add') }}', {
+                    sku_id: $('label.active input[name=skus]').val(),
+                    amount: $('.cart_amount input').val(),
+                }).then(function () {
+                    swal('加入购物车', '', 'success').then(function () {
+                        location.href = '{{ route('cart.index') }}';
+                    })
+                }).catch(function (error) {
+                    if (error.response.status === 401) {
+                        swal('请先登录', '', 'error');
+                    } else if (error.response.status === 422) {
+                        let html = '<div>';
+                        _.each(error.response.data.errors, function (errors) {
+                            _.each(errors, function (error) {
+                                html += error + '<br>';
+                            })
+                        });
+                        html += '</div>';
+                        swal({content: $(html)[0], icon: 'error'});
+                    } else {
+                        swal('系统错误','','error');
+                    }
                 })
             })
 

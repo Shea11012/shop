@@ -13,7 +13,7 @@
 
 Route::get('/', 'ProductController@index')->name('root');
 Route::get('products','ProductController@index')->name('products.index');
-Route::get('products/{product}','ProductController@show')->name('products.show');
+Route::get('products/{product}','ProductController@show')->name('products.show')->where('product','\d+');
 Route::get('test',function (){
     return $_ENV;
 });
@@ -31,5 +31,12 @@ Route::group(['middleware' => ['auth','verified']],function () {
 
     Route::post('products/{product}/favorite','ProductController@favor')->name('products.favor');
     Route::delete('products/{product}/favorite','ProductController@disfavor')->name('products.disfavor');
+    Route::get('products/favorites','ProductController@favorites')->name('products.favorites');
+
+    Route::post('cart','CartController@add')->name('cart.add');
+    Route::get('cart','CartController@index')->name('cart.index');
+    Route::delete('cart/{sku}','CartController@remove')->name('cart.remove');
 });
+
+
 
