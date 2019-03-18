@@ -55,6 +55,35 @@
                         @endforeach
                         </tbody>
                     </table>
+
+                    <div>
+                        <form class="form-horizontal" role="form" id="order-form">
+                            <div class="form-group row">
+                                <label class="col-form-label col-sm-3 text-md-right">选择收货地址</label>
+                                <div class="col-sm-9 col-md-7">
+                                    <select name="address" class="form-control">
+                                        @foreach($addresses as $address)
+                                            <option
+                                                value="{{ $address->id }}">{{ $address->full_address }} {{ $address->contact_name }} {{ $address->contact_phone }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-form-label col-sm-3 text-md-right">备注</label>
+                                <div class="col-sm-9 col-md-7">
+                                    <textarea name="remark" class="form-control" rows="3"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="offset-sm-3 col-sm-3">
+                                    <button type="button" class="btn btn-primary btn-create-order">提交订单</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -68,10 +97,10 @@
                 const id = $(this).closest('tr').data('id');
 
                 swal({
-                    title:'确认要将该商品移除？',
-                    icon:'warning',
-                    button:['取消','确定'],
-                    dangerMode:true,
+                    title: '确认要将该商品移除？',
+                    icon: 'warning',
+                    button: ['取消', '确定'],
+                    dangerMode: true,
                 }).then(function (willDelete) {
                     if (!willDelete) {
                         return;
@@ -87,7 +116,54 @@
                 let checked = $(this).prop('checked');
 
                 $('input[name=select][type=checkbox]:not([disabled])').each(function () {
-                    $(this).prop('checked',checked);
+                    $(this).prop('checked', checked);
+                })
+            });
+
+            $('.btn-create-order').click(function () {
+                let orderForm = $('#order-form');
+                let req = {
+                    address_id: orderForm.find('select[name=address]').val(),
+                    items: [],
+                    remark: orderForm.find('textarea[name=remark]').val(),
+                };
+
+                $('table tr[data-id]').each(function () {
+                    let $checkbox = $(this).find('input[name=select][type=checkbox]');
+                    if ($checkbox.prop('disabled') || !$checkbox.prop('checked')) {
+                        return;
+                    }
+
+                    let $input = $(this).find('input[name=amount]');
+                    if ($input.val() == 0 || isNaN($input.val())) {
+                        return;
+                    }
+
+                    req.items.push({
+                        sku_id: $(this).data('id'),
+                        amount: $input.val()
+                    })
+                });
+
+                axios.post('{{ route('orders.store') }}', req)
+                    .then(response => {
+                        swal('订单提交成功', '', 'success')
+                            .then(() => {
+                                location.href = '/orders/' + response.data.id;
+                            });
+                    }).catch(error => {
+                    if (error.response.status === 422) {
+                        let html = '<div>';
+                        _.each(error.response.data.errors, function (errors) {
+                            _.each(errors, function (error) {
+                                html += error + '<br>';
+                            })
+                        });
+                        html += '</div>';
+                        swal({content: $(html)[0], icon: 'error'})
+                    } else {
+                        swal('系统错误', '', 'error');
+                    }
                 })
             })
         })

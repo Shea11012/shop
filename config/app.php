@@ -29,6 +29,7 @@ return [
     'env' => env('APP_ENV', 'production'),
 
     'faker_locale' => 'zh_CN',
+    'order_ttl' => 1800,
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode
