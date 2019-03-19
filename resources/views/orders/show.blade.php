@@ -53,6 +53,16 @@
                             <div class="line">
                                 <div class="line-label">订单编号：</div><div class="line-value">{{ $order->no }}</div>
                             </div>
+                            <div class="line">
+                                <div class="line-label">物流状态：</div>
+                                <div class="line-value">{{ \App\Models\Order::$shipStatusMap[$order->ship_status] }}</div>
+                            </div>
+                            @if($order->ship_data)
+                                <div class="line">
+                                    <div class="line-label">物流信息：</div>
+                                    <div class="line-value">{{ $order->ship_data['express_company'] }} {{ $order->ship_data['express_no'] }}</div>
+                                </div>
+                            @endif
                         </div>
 
                         <div class="order-summary text-right">
@@ -83,6 +93,12 @@
                                     <button class="btn btn-sm btn-success" id="btn-wechat">微信支付</button>
                                 </div>
                             @endif
+
+                            @if($order->ship_status === \App\Models\Order::SHIP_STATUS_DELIVERED)
+                                <div class="receive-button">
+                                    <button type="button" id="btn-receive" class="btn btn-sm btn-success">确认收货</button>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -104,6 +120,24 @@
                             location.reload();
                         }
                     })
+            });
+
+            $('#btn-receive').click(function () {
+                swal({
+                    title:'确认已经收到商品？',
+                    icon:'waring',
+                    dangerMode:true,
+                    buttons:['取消','确认收到'],
+                }).then(res => {
+                    if (!res) {
+                        return;
+                    }
+
+                    axios.post('{{ route('orders.received',[$order->id]) }}')
+                        .then(() => {
+                            location.reload();
+                        })
+                })
             })
         })
     </script>
