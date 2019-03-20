@@ -46,6 +46,7 @@
                 <td>{{ \App\Models\Order::$shipStatusMap[$order->ship_status] }}</td>
             </tr>
             @if($order->ship_status === \App\Models\Order::SHIP_STATUS_PENDING)
+                @if($order->refund_status !== \App\Models\Order::REFUND_STATUS_SUCCESS)
                 <tr>
                     <td colspan="4">
                         <form action="{{ route('admin.orders.ship',[$order->id]) }}" method="post" class="form-inline">
@@ -72,6 +73,7 @@
                         </form>
                     </td>
                 </tr>
+                @endif
             @else
                 <tr>
                     <td>物流公司：</td>
@@ -80,7 +82,97 @@
                     <td>{{ $order->ship_data['express_no'] }}</td>
                 </tr>
             @endif
+
+            @if($order->refund_status !== \App\Models\Order::REFUND_STATUS_PENDING)
+                <tr>
+                    <td>退款状态：</td>
+                    <td colspan="2">{{ \App\Models\Order::$refundStatusMap[$order->refund_status] }}，理由：{{ $order->extra['refund_reason'] }}</td>
+                    <td>
+                        @if($order->refund_status === \App\Models\Order::REFUND_STATUS_APPLIED)
+                            <button class="btn btn-sm btn-success" id="btn-refund-agree">同意</button>
+                            <button class="btn btn-sm btn-danger" id="btn-refund-disagree">不同意</button>
+                        @endif
+                    </td>
+                </tr>
+            @endif
             </tbody>
         </table>
     </div>
 </div>
+<script>
+    $(function () {
+        $('#btn-refund-disagree').click(function () {
+            swal({
+                title:'输入拒绝退款理由',
+                input:'text',
+                showCancelButton: true,
+                confirmButtonText: "确认",
+                cancelButtonText: "取消",
+                showLoaderOnConfirm: true,
+                preConfirm: inputValue => {
+                    if (!inputValue) {
+                        swal('理由不能为空','','error');
+                        return false;
+                    }
+
+                    return $.ajax({
+                        url:'{{ route('admin.orders.handle_refund',[$order->id]) }}',
+                        type:'POST',
+                        data:JSON.stringify({
+                            agree:false,
+                            reason:inputValue,
+                            _token:LA.token,
+                        }),
+                        contentType:'application/json',
+                    })
+                },
+                allowOutsideClick:false
+            }).then(result => {
+                if (result.dismiss === 'cancel') {
+                    return;
+                }
+
+                swal({
+                    title:'操作成功',
+                    type:'success'
+                }).then(() => {
+                    location.reload();
+                })
+            })
+        });
+
+        $('#btn-refund-agree').click(function () {
+            swal({
+                title:'确认要将款项退还给用户？',
+                type:'warning',
+                showCancelButton: true,
+                confirmButtonText: "确认",
+                cancelButtonText: "取消",
+                showLoaderOnConfirm: true,
+                preConfirm:()=> {
+                    return $.ajax({
+                        url:'{{ route('admin.orders.handle_refund',[$order->id]) }}',
+                        type:'POST',
+                        data:JSON.stringify({
+                            agree:true,
+                            _token:LA.token,
+                        }),
+                        contentType: 'application/json',
+                    })
+                },
+                allowOutsideClick: false,
+            }).then(res => {
+                if (res.dismiss === 'cancel') {
+                    return;
+                }
+
+                swal({
+                    title:'操作成功',
+                    type:'success'
+                }).then(() => {
+                    location.reload();
+                })
+            })
+        })
+    })
+</script>
