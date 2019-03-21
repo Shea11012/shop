@@ -14,9 +14,7 @@
 Route::get('/', 'ProductController@index')->name('root');
 Route::get('products','ProductController@index')->name('products.index');
 Route::get('products/{product}','ProductController@show')->name('products.show')->where('product','\d+');
-Route::get('test',function (){
-    return $_ENV;
-});
+Route::get('test','PagesController@root');
 
 
 Auth::routes(['verify' => true]);

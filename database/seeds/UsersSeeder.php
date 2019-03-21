@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class CouponCodeSeeder extends Seeder
+class UsersSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class CouponCodeSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\CouponCode::class,20)->create();
+        factory(\App\Models\User::class,100)->create();
     }
 }
