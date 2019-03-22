@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\InvalidRequestException;
+use App\Models\Category;
 use App\Models\OrderItem;
 use App\Models\Product;
+use App\Services\CategoryService;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -26,6 +28,16 @@ class ProductController extends Controller
             });
         }
 
+        if ($request->input('category_id') && $category = Category::find($request->input('category_id'))) {
+            if ($category->is_directory) {
+                $builder->whereHas('category', function ($query) use ($category) {
+                    $query->where('path', 'like', $category->path . $category->id . '-%');
+                });
+            } else {
+                $builder->where('category_id', $category->id);
+            }
+        }
+
         if ($order = $request->input('order', '')) {
             if (preg_match('/^(.+)_(asc|desc)$/', $order, $m)) {
                 if (in_array($m[1], ['price', 'sold_count', 'rating'])) {
@@ -37,7 +49,15 @@ class ProductController extends Controller
         $products = $builder->paginate(16);
 
         // 添加 filters 数组实现了保留用户搜索内容
-        return view('products.index', ['products' => $products, 'filters' => ['search' => $search, 'order' => $order]]);
+        return view('products.index', [
+                'products'     => $products,
+                'filters'      => [
+                    'search' => $search,
+                    'order'  => $order,
+                ],
+                'category'     => $category ?? null,
+            ]
+        );
     }
 
     public function show(Product $product, Request $request)
@@ -53,14 +73,14 @@ class ProductController extends Controller
         }
 
         $reviews = OrderItem::query()
-            ->with(['order.user','productSku'])
-            ->where('product_id',$product->id)
+            ->with(['order.user', 'productSku'])
+            ->where('product_id', $product->id)
             ->whereNotNull('reviewed_at')
-            ->orderBy('reviewed_at','desc')
+            ->orderBy('reviewed_at', 'desc')
             ->limit(10)
             ->get();
 
-        return view('products.show', compact('product','favored','reviews'));
+        return view('products.show', compact('product', 'favored', 'reviews'));
     }
 
     public function favor(Product $product, Request $request)

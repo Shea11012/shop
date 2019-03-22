@@ -149,7 +149,7 @@ class CategoriesController extends Controller
         // 用户输入值通过 q 参数获取
         $search = $request->input('q');
         $result = Category::query()
-            ->where('is_directory',true)
+            ->where('is_directory',boolval($request->input('is_directory',true)))
             ->where('name','like','%'.$search.'%')
             ->paginate();
 

@@ -42,12 +42,17 @@ Route::group(['middleware' => ['auth','verified']],function () {
     Route::get('orders/{order}/review','OrdersController@review')->name('orders.review.show');
     Route::post('orders/{order}/review','OrdersController@sendReview')->name('orders.review.store');
     Route::post('orders/{order}/apply_refund','OrdersController@applyRefund')->name('orders.apply_refund');
+    Route::post('crowdfunding_orders','OrdersController@crowdfunding')->name('crowdfunding_orders.store');
 
     Route::get('payment/{order}/alipay','PaymentController@payByAlipay')->name('payment.alipay');
     Route::get('payment/alipay/return','PaymentController@alipayReturn')->name('payment.alipay.return');
     Route::get('payment/{order}/wechat','PaymentController@payByWechat')->name('payment.wechat');
 
     Route::get('coupon_codes/{code}','CouponCodesController@show')->name('coupon_codes.show');
+    Route::post('payment/{order}/installment','PaymentController@payByInstallment')->name('payment.installment');
+
+    Route::get('installment','InstallmentsController@index')->name('installment.index');
+    Route::get('installment/{installment}','InstallmentsController@show')->name('installment.show');
 });
 
 Route::post('payment/alipay/notify','PaymentController@alipayNotify')->name('payment.alipay.notify');

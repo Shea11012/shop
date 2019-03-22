@@ -52,7 +52,7 @@ class Category extends Model
     // 获取所有祖先类目并按层级排序
     public function getAncestorsAttribute()
     {
-        return Category::query()
+        return $this::query()
             ->whereIn('id', $this->path_ids)
             ->orderBy('level')
             ->get();
