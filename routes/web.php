@@ -51,11 +51,15 @@ Route::group(['middleware' => ['auth','verified']],function () {
     Route::get('coupon_codes/{code}','CouponCodesController@show')->name('coupon_codes.show');
     Route::post('payment/{order}/installment','PaymentController@payByInstallment')->name('payment.installment');
 
-    Route::get('installment','InstallmentsController@index')->name('installment.index');
-    Route::get('installment/{installment}','InstallmentsController@show')->name('installment.show');
+    Route::get('installments','InstallmentsController@index')->name('installments.index');
+    Route::get('installments/{installment}','InstallmentsController@show')->name('installments.show');
+    Route::get('installments/{installment}/alipay','InstallmentsController@payByAlipay')->name('installments.alipay');
+    Route::get('installments/alipay/return','InstallmentsController@alipayReturn')->name('installments.alipay.return');
 });
 
 Route::post('payment/alipay/notify','PaymentController@alipayNotify')->name('payment.alipay.notify');
 Route::post('payment/alipay/notify','PaymentController@wechatNotify')->name('payment.wechat.notify');
 Route::post('payment/wechat/refund_notify','PaymentController@wechatRefundNotify')->name('payment.wechat.refund_notify');
+Route::post('installments/alipay/notify','InstallmentsController@alipayNotify')->name('installments.alipay.notify');
+Route::post('installments/wechat/refund_notify','InstallmentsController@wechatRefundNotify')->name('installments.wechat.refund_notify');
 

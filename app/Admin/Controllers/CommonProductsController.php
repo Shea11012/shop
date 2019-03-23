@@ -84,11 +84,17 @@ abstract class CommonProductsController extends Controller
 
         $this->customForm($form);
 
-        $form->hasMany('skus',function (Form\NestedForm $form) {
+        $form->hasMany('skus','商品 SKU',function (Form\NestedForm $form) {
             $form->text('title','SKU 名称')->rules('required');
+            $form->text('long_title','商品长标题')->rules('required');
             $form->text('description','SKU 描述')->rules('required');
             $form->text('price','单价')->rules('required|numeric|min:0.01');
             $form->text('stock','剩余库存')->rules('required|integer|min:0');
+        });
+
+        $form->hasMany('properties','商品属性',function (Form\NestedForm $form) {
+            $form->text('name','属性名')->rules('required');
+            $form->text('value','属性值')->rules('required');
         });
 
         $form->saving(function (Form $form) {
