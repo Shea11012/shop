@@ -7,6 +7,7 @@ use Monolog\Logger;
 use Illuminate\Support\ServiceProvider;
 use Yansongda\Pay\Pay;
 use Carbon\Carbon;
+use Elasticsearch\ClientBuilder as ESClientBuilder;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -40,6 +41,15 @@ class AppServiceProvider extends ServiceProvider
                 $config['log']['level'] = Logger::WARNING;
             }
             return Pay::wechat($config);
+        });
+
+        $this->app->singleton('es',function () {
+            $builder = ESClientBuilder::create()->setHosts(config('database.elasticsearch.host'));
+            if (app()->environment() === 'local') {
+                $builder->setLogger(app('log')->driver());
+            }
+
+            return $builder->build();
         });
     }
 

@@ -10,6 +10,22 @@ class PagesController extends Controller
 {
     public function root()
     {
-        \Log::debug(Carbon::now()->toDateTimeString());
+        $params = [
+            'index' => 'products',
+            'type'  => '_doc',
+            'body'  => [
+                'from'  => 0,
+                'size'  => 5,
+                'query' => [
+                    'bool' => [
+                        'filter' => [
+                            ['term' => ['on_sale' => true]],
+                        ],
+                    ],
+                ],
+            ],
+        ];
+        $a = app('es')->search($params);
+        dd($a);
     }
 }
