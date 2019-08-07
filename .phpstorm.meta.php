@@ -5,7 +5,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2019-03-24 19:22:35.
+    * Generated on 2019-08-07 13:01:28.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -18,7 +18,7 @@ namespace PHPSTORM_META {
         'Illuminate\Console\Scheduling\ScheduleFinishCommand' => \Illuminate\Console\Scheduling\ScheduleFinishCommand::class,
         'Illuminate\Console\Scheduling\ScheduleRunCommand' => \Illuminate\Console\Scheduling\ScheduleRunCommand::class,
         'Illuminate\Contracts\Auth\Access\Gate' => \Illuminate\Auth\Access\Gate::class,
-        'Illuminate\Contracts\Broadcasting\Broadcaster' => \Illuminate\Broadcasting\Broadcasters\LogBroadcaster::class,
+        'Illuminate\Contracts\Broadcasting\Broadcaster' => \Illuminate\Broadcasting\Broadcasters\NullBroadcaster::class,
         'Illuminate\Contracts\Console\Kernel' => \App\Console\Kernel::class,
         'Illuminate\Contracts\Debug\ExceptionHandler' => \NunoMaduro\Collision\Adapters\Laravel\ExceptionHandler::class,
         'Illuminate\Contracts\Http\Kernel' => \App\Http\Kernel::class,
@@ -126,7 +126,6 @@ namespace PHPSTORM_META {
         'db' => \Illuminate\Database\DatabaseManager::class,
         'db.connection' => \Illuminate\Database\MySqlConnection::class,
         'db.factory' => \Illuminate\Database\Connectors\ConnectionFactory::class,
-        'encrypter' => \Illuminate\Encryption\Encrypter::class,
         'events' => \Illuminate\Events\Dispatcher::class,
         'files' => \Illuminate\Filesystem\Filesystem::class,
         'filesystem' => \Illuminate\Filesystem\FilesystemManager::class,
@@ -140,7 +139,7 @@ namespace PHPSTORM_META {
         'migration.repository' => \Illuminate\Database\Migrations\DatabaseMigrationRepository::class,
         'migrator' => \Illuminate\Database\Migrations\Migrator::class,
         'queue' => \Illuminate\Queue\QueueManager::class,
-        'queue.connection' => \Illuminate\Queue\RedisQueue::class,
+        'queue.connection' => \Illuminate\Queue\SyncQueue::class,
         'queue.failer' => \Illuminate\Queue\Failed\DatabaseFailedJobProvider::class,
         'queue.listener' => \Illuminate\Queue\Listener::class,
         'queue.worker' => \Illuminate\Queue\Worker::class,
@@ -159,7 +158,6 @@ namespace PHPSTORM_META {
         'view' => \Illuminate\View\Factory::class,
         'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
         'view.finder' => \Illuminate\View\FileViewFinder::class,
-        'wechat_pay' => \Yansongda\Pay\Gateways\Wechat::class,
     ]));
     override(\Illuminate\Contracts\Container\Container::make(0), map([
         '' => '@',
@@ -169,7 +167,7 @@ namespace PHPSTORM_META {
         'Illuminate\Console\Scheduling\ScheduleFinishCommand' => \Illuminate\Console\Scheduling\ScheduleFinishCommand::class,
         'Illuminate\Console\Scheduling\ScheduleRunCommand' => \Illuminate\Console\Scheduling\ScheduleRunCommand::class,
         'Illuminate\Contracts\Auth\Access\Gate' => \Illuminate\Auth\Access\Gate::class,
-        'Illuminate\Contracts\Broadcasting\Broadcaster' => \Illuminate\Broadcasting\Broadcasters\LogBroadcaster::class,
+        'Illuminate\Contracts\Broadcasting\Broadcaster' => \Illuminate\Broadcasting\Broadcasters\NullBroadcaster::class,
         'Illuminate\Contracts\Console\Kernel' => \App\Console\Kernel::class,
         'Illuminate\Contracts\Debug\ExceptionHandler' => \NunoMaduro\Collision\Adapters\Laravel\ExceptionHandler::class,
         'Illuminate\Contracts\Http\Kernel' => \App\Http\Kernel::class,
@@ -277,7 +275,6 @@ namespace PHPSTORM_META {
         'db' => \Illuminate\Database\DatabaseManager::class,
         'db.connection' => \Illuminate\Database\MySqlConnection::class,
         'db.factory' => \Illuminate\Database\Connectors\ConnectionFactory::class,
-        'encrypter' => \Illuminate\Encryption\Encrypter::class,
         'events' => \Illuminate\Events\Dispatcher::class,
         'files' => \Illuminate\Filesystem\Filesystem::class,
         'filesystem' => \Illuminate\Filesystem\FilesystemManager::class,
@@ -291,7 +288,7 @@ namespace PHPSTORM_META {
         'migration.repository' => \Illuminate\Database\Migrations\DatabaseMigrationRepository::class,
         'migrator' => \Illuminate\Database\Migrations\Migrator::class,
         'queue' => \Illuminate\Queue\QueueManager::class,
-        'queue.connection' => \Illuminate\Queue\RedisQueue::class,
+        'queue.connection' => \Illuminate\Queue\SyncQueue::class,
         'queue.failer' => \Illuminate\Queue\Failed\DatabaseFailedJobProvider::class,
         'queue.listener' => \Illuminate\Queue\Listener::class,
         'queue.worker' => \Illuminate\Queue\Worker::class,
@@ -310,7 +307,6 @@ namespace PHPSTORM_META {
         'view' => \Illuminate\View\Factory::class,
         'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
         'view.finder' => \Illuminate\View\FileViewFinder::class,
-        'wechat_pay' => \Yansongda\Pay\Gateways\Wechat::class,
     ]));
     override(\Illuminate\Contracts\Container\Container::makeWith(0), map([
         '' => '@',
@@ -320,7 +316,7 @@ namespace PHPSTORM_META {
         'Illuminate\Console\Scheduling\ScheduleFinishCommand' => \Illuminate\Console\Scheduling\ScheduleFinishCommand::class,
         'Illuminate\Console\Scheduling\ScheduleRunCommand' => \Illuminate\Console\Scheduling\ScheduleRunCommand::class,
         'Illuminate\Contracts\Auth\Access\Gate' => \Illuminate\Auth\Access\Gate::class,
-        'Illuminate\Contracts\Broadcasting\Broadcaster' => \Illuminate\Broadcasting\Broadcasters\LogBroadcaster::class,
+        'Illuminate\Contracts\Broadcasting\Broadcaster' => \Illuminate\Broadcasting\Broadcasters\NullBroadcaster::class,
         'Illuminate\Contracts\Console\Kernel' => \App\Console\Kernel::class,
         'Illuminate\Contracts\Debug\ExceptionHandler' => \NunoMaduro\Collision\Adapters\Laravel\ExceptionHandler::class,
         'Illuminate\Contracts\Http\Kernel' => \App\Http\Kernel::class,
@@ -428,7 +424,6 @@ namespace PHPSTORM_META {
         'db' => \Illuminate\Database\DatabaseManager::class,
         'db.connection' => \Illuminate\Database\MySqlConnection::class,
         'db.factory' => \Illuminate\Database\Connectors\ConnectionFactory::class,
-        'encrypter' => \Illuminate\Encryption\Encrypter::class,
         'events' => \Illuminate\Events\Dispatcher::class,
         'files' => \Illuminate\Filesystem\Filesystem::class,
         'filesystem' => \Illuminate\Filesystem\FilesystemManager::class,
@@ -442,7 +437,7 @@ namespace PHPSTORM_META {
         'migration.repository' => \Illuminate\Database\Migrations\DatabaseMigrationRepository::class,
         'migrator' => \Illuminate\Database\Migrations\Migrator::class,
         'queue' => \Illuminate\Queue\QueueManager::class,
-        'queue.connection' => \Illuminate\Queue\RedisQueue::class,
+        'queue.connection' => \Illuminate\Queue\SyncQueue::class,
         'queue.failer' => \Illuminate\Queue\Failed\DatabaseFailedJobProvider::class,
         'queue.listener' => \Illuminate\Queue\Listener::class,
         'queue.worker' => \Illuminate\Queue\Worker::class,
@@ -461,7 +456,6 @@ namespace PHPSTORM_META {
         'view' => \Illuminate\View\Factory::class,
         'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
         'view.finder' => \Illuminate\View\FileViewFinder::class,
-        'wechat_pay' => \Yansongda\Pay\Gateways\Wechat::class,
     ]));
     override(\App::make(0), map([
         '' => '@',
@@ -471,7 +465,7 @@ namespace PHPSTORM_META {
         'Illuminate\Console\Scheduling\ScheduleFinishCommand' => \Illuminate\Console\Scheduling\ScheduleFinishCommand::class,
         'Illuminate\Console\Scheduling\ScheduleRunCommand' => \Illuminate\Console\Scheduling\ScheduleRunCommand::class,
         'Illuminate\Contracts\Auth\Access\Gate' => \Illuminate\Auth\Access\Gate::class,
-        'Illuminate\Contracts\Broadcasting\Broadcaster' => \Illuminate\Broadcasting\Broadcasters\LogBroadcaster::class,
+        'Illuminate\Contracts\Broadcasting\Broadcaster' => \Illuminate\Broadcasting\Broadcasters\NullBroadcaster::class,
         'Illuminate\Contracts\Console\Kernel' => \App\Console\Kernel::class,
         'Illuminate\Contracts\Debug\ExceptionHandler' => \NunoMaduro\Collision\Adapters\Laravel\ExceptionHandler::class,
         'Illuminate\Contracts\Http\Kernel' => \App\Http\Kernel::class,
@@ -579,7 +573,6 @@ namespace PHPSTORM_META {
         'db' => \Illuminate\Database\DatabaseManager::class,
         'db.connection' => \Illuminate\Database\MySqlConnection::class,
         'db.factory' => \Illuminate\Database\Connectors\ConnectionFactory::class,
-        'encrypter' => \Illuminate\Encryption\Encrypter::class,
         'events' => \Illuminate\Events\Dispatcher::class,
         'files' => \Illuminate\Filesystem\Filesystem::class,
         'filesystem' => \Illuminate\Filesystem\FilesystemManager::class,
@@ -593,7 +586,7 @@ namespace PHPSTORM_META {
         'migration.repository' => \Illuminate\Database\Migrations\DatabaseMigrationRepository::class,
         'migrator' => \Illuminate\Database\Migrations\Migrator::class,
         'queue' => \Illuminate\Queue\QueueManager::class,
-        'queue.connection' => \Illuminate\Queue\RedisQueue::class,
+        'queue.connection' => \Illuminate\Queue\SyncQueue::class,
         'queue.failer' => \Illuminate\Queue\Failed\DatabaseFailedJobProvider::class,
         'queue.listener' => \Illuminate\Queue\Listener::class,
         'queue.worker' => \Illuminate\Queue\Worker::class,
@@ -612,7 +605,6 @@ namespace PHPSTORM_META {
         'view' => \Illuminate\View\Factory::class,
         'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
         'view.finder' => \Illuminate\View\FileViewFinder::class,
-        'wechat_pay' => \Yansongda\Pay\Gateways\Wechat::class,
     ]));
     override(\App::makeWith(0), map([
         '' => '@',
@@ -622,7 +614,7 @@ namespace PHPSTORM_META {
         'Illuminate\Console\Scheduling\ScheduleFinishCommand' => \Illuminate\Console\Scheduling\ScheduleFinishCommand::class,
         'Illuminate\Console\Scheduling\ScheduleRunCommand' => \Illuminate\Console\Scheduling\ScheduleRunCommand::class,
         'Illuminate\Contracts\Auth\Access\Gate' => \Illuminate\Auth\Access\Gate::class,
-        'Illuminate\Contracts\Broadcasting\Broadcaster' => \Illuminate\Broadcasting\Broadcasters\LogBroadcaster::class,
+        'Illuminate\Contracts\Broadcasting\Broadcaster' => \Illuminate\Broadcasting\Broadcasters\NullBroadcaster::class,
         'Illuminate\Contracts\Console\Kernel' => \App\Console\Kernel::class,
         'Illuminate\Contracts\Debug\ExceptionHandler' => \NunoMaduro\Collision\Adapters\Laravel\ExceptionHandler::class,
         'Illuminate\Contracts\Http\Kernel' => \App\Http\Kernel::class,
@@ -730,7 +722,6 @@ namespace PHPSTORM_META {
         'db' => \Illuminate\Database\DatabaseManager::class,
         'db.connection' => \Illuminate\Database\MySqlConnection::class,
         'db.factory' => \Illuminate\Database\Connectors\ConnectionFactory::class,
-        'encrypter' => \Illuminate\Encryption\Encrypter::class,
         'events' => \Illuminate\Events\Dispatcher::class,
         'files' => \Illuminate\Filesystem\Filesystem::class,
         'filesystem' => \Illuminate\Filesystem\FilesystemManager::class,
@@ -744,7 +735,7 @@ namespace PHPSTORM_META {
         'migration.repository' => \Illuminate\Database\Migrations\DatabaseMigrationRepository::class,
         'migrator' => \Illuminate\Database\Migrations\Migrator::class,
         'queue' => \Illuminate\Queue\QueueManager::class,
-        'queue.connection' => \Illuminate\Queue\RedisQueue::class,
+        'queue.connection' => \Illuminate\Queue\SyncQueue::class,
         'queue.failer' => \Illuminate\Queue\Failed\DatabaseFailedJobProvider::class,
         'queue.listener' => \Illuminate\Queue\Listener::class,
         'queue.worker' => \Illuminate\Queue\Worker::class,
@@ -763,7 +754,6 @@ namespace PHPSTORM_META {
         'view' => \Illuminate\View\Factory::class,
         'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
         'view.finder' => \Illuminate\View\FileViewFinder::class,
-        'wechat_pay' => \Yansongda\Pay\Gateways\Wechat::class,
     ]));
     override(\app(0), map([
         '' => '@',
@@ -773,7 +763,7 @@ namespace PHPSTORM_META {
         'Illuminate\Console\Scheduling\ScheduleFinishCommand' => \Illuminate\Console\Scheduling\ScheduleFinishCommand::class,
         'Illuminate\Console\Scheduling\ScheduleRunCommand' => \Illuminate\Console\Scheduling\ScheduleRunCommand::class,
         'Illuminate\Contracts\Auth\Access\Gate' => \Illuminate\Auth\Access\Gate::class,
-        'Illuminate\Contracts\Broadcasting\Broadcaster' => \Illuminate\Broadcasting\Broadcasters\LogBroadcaster::class,
+        'Illuminate\Contracts\Broadcasting\Broadcaster' => \Illuminate\Broadcasting\Broadcasters\NullBroadcaster::class,
         'Illuminate\Contracts\Console\Kernel' => \App\Console\Kernel::class,
         'Illuminate\Contracts\Debug\ExceptionHandler' => \NunoMaduro\Collision\Adapters\Laravel\ExceptionHandler::class,
         'Illuminate\Contracts\Http\Kernel' => \App\Http\Kernel::class,
@@ -881,7 +871,6 @@ namespace PHPSTORM_META {
         'db' => \Illuminate\Database\DatabaseManager::class,
         'db.connection' => \Illuminate\Database\MySqlConnection::class,
         'db.factory' => \Illuminate\Database\Connectors\ConnectionFactory::class,
-        'encrypter' => \Illuminate\Encryption\Encrypter::class,
         'events' => \Illuminate\Events\Dispatcher::class,
         'files' => \Illuminate\Filesystem\Filesystem::class,
         'filesystem' => \Illuminate\Filesystem\FilesystemManager::class,
@@ -895,7 +884,7 @@ namespace PHPSTORM_META {
         'migration.repository' => \Illuminate\Database\Migrations\DatabaseMigrationRepository::class,
         'migrator' => \Illuminate\Database\Migrations\Migrator::class,
         'queue' => \Illuminate\Queue\QueueManager::class,
-        'queue.connection' => \Illuminate\Queue\RedisQueue::class,
+        'queue.connection' => \Illuminate\Queue\SyncQueue::class,
         'queue.failer' => \Illuminate\Queue\Failed\DatabaseFailedJobProvider::class,
         'queue.listener' => \Illuminate\Queue\Listener::class,
         'queue.worker' => \Illuminate\Queue\Worker::class,
@@ -914,7 +903,6 @@ namespace PHPSTORM_META {
         'view' => \Illuminate\View\Factory::class,
         'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
         'view.finder' => \Illuminate\View\FileViewFinder::class,
-        'wechat_pay' => \Yansongda\Pay\Gateways\Wechat::class,
     ]));
     override(\resolve(0), map([
         '' => '@',
@@ -924,7 +912,7 @@ namespace PHPSTORM_META {
         'Illuminate\Console\Scheduling\ScheduleFinishCommand' => \Illuminate\Console\Scheduling\ScheduleFinishCommand::class,
         'Illuminate\Console\Scheduling\ScheduleRunCommand' => \Illuminate\Console\Scheduling\ScheduleRunCommand::class,
         'Illuminate\Contracts\Auth\Access\Gate' => \Illuminate\Auth\Access\Gate::class,
-        'Illuminate\Contracts\Broadcasting\Broadcaster' => \Illuminate\Broadcasting\Broadcasters\LogBroadcaster::class,
+        'Illuminate\Contracts\Broadcasting\Broadcaster' => \Illuminate\Broadcasting\Broadcasters\NullBroadcaster::class,
         'Illuminate\Contracts\Console\Kernel' => \App\Console\Kernel::class,
         'Illuminate\Contracts\Debug\ExceptionHandler' => \NunoMaduro\Collision\Adapters\Laravel\ExceptionHandler::class,
         'Illuminate\Contracts\Http\Kernel' => \App\Http\Kernel::class,
@@ -1032,7 +1020,6 @@ namespace PHPSTORM_META {
         'db' => \Illuminate\Database\DatabaseManager::class,
         'db.connection' => \Illuminate\Database\MySqlConnection::class,
         'db.factory' => \Illuminate\Database\Connectors\ConnectionFactory::class,
-        'encrypter' => \Illuminate\Encryption\Encrypter::class,
         'events' => \Illuminate\Events\Dispatcher::class,
         'files' => \Illuminate\Filesystem\Filesystem::class,
         'filesystem' => \Illuminate\Filesystem\FilesystemManager::class,
@@ -1046,7 +1033,7 @@ namespace PHPSTORM_META {
         'migration.repository' => \Illuminate\Database\Migrations\DatabaseMigrationRepository::class,
         'migrator' => \Illuminate\Database\Migrations\Migrator::class,
         'queue' => \Illuminate\Queue\QueueManager::class,
-        'queue.connection' => \Illuminate\Queue\RedisQueue::class,
+        'queue.connection' => \Illuminate\Queue\SyncQueue::class,
         'queue.failer' => \Illuminate\Queue\Failed\DatabaseFailedJobProvider::class,
         'queue.listener' => \Illuminate\Queue\Listener::class,
         'queue.worker' => \Illuminate\Queue\Worker::class,
@@ -1065,7 +1052,6 @@ namespace PHPSTORM_META {
         'view' => \Illuminate\View\Factory::class,
         'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
         'view.finder' => \Illuminate\View\FileViewFinder::class,
-        'wechat_pay' => \Yansongda\Pay\Gateways\Wechat::class,
     ]));
 
     override(\Illuminate\Support\Arr::add(0), type(0));

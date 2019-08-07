@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.7.28 on 2019-03-24 19:22:35.
+ * Generated for Laravel 5.7.28 on 2019-08-07 13:01:25.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -3710,108 +3710,6 @@ namespace Illuminate\Support\Facades {
         public static function hasMacro($name)
         {
                         return \Illuminate\Cookie\CookieJar::hasMacro($name);
-        }
-         
-    }
-
-    /**
-     * 
-     *
-     * @see \Illuminate\Encryption\Encrypter
-     */ 
-    class Crypt {
-        
-        /**
-         * Determine if the given key and cipher combination is valid.
-         *
-         * @param string $key
-         * @param string $cipher
-         * @return bool 
-         * @static 
-         */ 
-        public static function supported($key, $cipher)
-        {
-                        return \Illuminate\Encryption\Encrypter::supported($key, $cipher);
-        }
-        
-        /**
-         * Create a new encryption key for the given cipher.
-         *
-         * @param string $cipher
-         * @return string 
-         * @static 
-         */ 
-        public static function generateKey($cipher)
-        {
-                        return \Illuminate\Encryption\Encrypter::generateKey($cipher);
-        }
-        
-        /**
-         * Encrypt the given value.
-         *
-         * @param mixed $value
-         * @param bool $serialize
-         * @return string 
-         * @throws \Illuminate\Contracts\Encryption\EncryptException
-         * @static 
-         */ 
-        public static function encrypt($value, $serialize = true)
-        {
-                        /** @var \Illuminate\Encryption\Encrypter $instance */
-                        return $instance->encrypt($value, $serialize);
-        }
-        
-        /**
-         * Encrypt a string without serialization.
-         *
-         * @param string $value
-         * @return string 
-         * @static 
-         */ 
-        public static function encryptString($value)
-        {
-                        /** @var \Illuminate\Encryption\Encrypter $instance */
-                        return $instance->encryptString($value);
-        }
-        
-        /**
-         * Decrypt the given value.
-         *
-         * @param mixed $payload
-         * @param bool $unserialize
-         * @return mixed 
-         * @throws \Illuminate\Contracts\Encryption\DecryptException
-         * @static 
-         */ 
-        public static function decrypt($payload, $unserialize = true)
-        {
-                        /** @var \Illuminate\Encryption\Encrypter $instance */
-                        return $instance->decrypt($payload, $unserialize);
-        }
-        
-        /**
-         * Decrypt the given string without unserialization.
-         *
-         * @param string $payload
-         * @return string 
-         * @static 
-         */ 
-        public static function decryptString($payload)
-        {
-                        /** @var \Illuminate\Encryption\Encrypter $instance */
-                        return $instance->decryptString($payload);
-        }
-        
-        /**
-         * Get the encryption key.
-         *
-         * @return string 
-         * @static 
-         */ 
-        public static function getKey()
-        {
-                        /** @var \Illuminate\Encryption\Encrypter $instance */
-                        return $instance->getKey();
         }
          
     }
@@ -7804,74 +7702,6 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Migrate the delayed jobs that are ready to the regular queue.
-         *
-         * @param string $from
-         * @param string $to
-         * @return array 
-         * @static 
-         */ 
-        public static function migrateExpiredJobs($from, $to)
-        {
-                        /** @var \Illuminate\Queue\RedisQueue $instance */
-                        return $instance->migrateExpiredJobs($from, $to);
-        }
-        
-        /**
-         * Delete a reserved job from the queue.
-         *
-         * @param string $queue
-         * @param \Illuminate\Queue\Jobs\RedisJob $job
-         * @return void 
-         * @static 
-         */ 
-        public static function deleteReserved($queue, $job)
-        {
-                        /** @var \Illuminate\Queue\RedisQueue $instance */
-                        $instance->deleteReserved($queue, $job);
-        }
-        
-        /**
-         * Delete a reserved job from the reserved queue and release it.
-         *
-         * @param string $queue
-         * @param \Illuminate\Queue\Jobs\RedisJob $job
-         * @param int $delay
-         * @return void 
-         * @static 
-         */ 
-        public static function deleteAndRelease($queue, $job, $delay)
-        {
-                        /** @var \Illuminate\Queue\RedisQueue $instance */
-                        $instance->deleteAndRelease($queue, $job, $delay);
-        }
-        
-        /**
-         * Get the queue or return the default.
-         *
-         * @param string|null $queue
-         * @return string 
-         * @static 
-         */ 
-        public static function getQueue($queue)
-        {
-                        /** @var \Illuminate\Queue\RedisQueue $instance */
-                        return $instance->getQueue($queue);
-        }
-        
-        /**
-         * Get the underlying Redis instance.
-         *
-         * @return \Illuminate\Contracts\Redis\Factory 
-         * @static 
-         */ 
-        public static function getRedis()
-        {
-                        /** @var \Illuminate\Queue\RedisQueue $instance */
-                        return $instance->getRedis();
-        }
-        
-        /**
          * Get the expiration timestamp for an object-based queue handler.
          *
          * @param mixed $job
@@ -7881,7 +7711,7 @@ namespace Illuminate\Support\Facades {
         public static function getJobExpiration($job)
         {
             //Method inherited from \Illuminate\Queue\Queue            
-                        /** @var \Illuminate\Queue\RedisQueue $instance */
+                        /** @var \Illuminate\Queue\SyncQueue $instance */
                         return $instance->getJobExpiration($job);
         }
         
@@ -7895,7 +7725,7 @@ namespace Illuminate\Support\Facades {
         public static function createPayloadUsing($callback)
         {
             //Method inherited from \Illuminate\Queue\Queue            
-                        \Illuminate\Queue\RedisQueue::createPayloadUsing($callback);
+                        \Illuminate\Queue\SyncQueue::createPayloadUsing($callback);
         }
         
         /**
@@ -7908,7 +7738,7 @@ namespace Illuminate\Support\Facades {
         public static function setContainer($container)
         {
             //Method inherited from \Illuminate\Queue\Queue            
-                        /** @var \Illuminate\Queue\RedisQueue $instance */
+                        /** @var \Illuminate\Queue\SyncQueue $instance */
                         $instance->setContainer($container);
         }
          
@@ -9498,7 +9328,7 @@ namespace Illuminate\Support\Facades {
          *  * $default
          *
          * @param string|null $default The default format
-         * @return string The request format
+         * @return string|null The request format
          * @static 
          */ 
         public static function getRequestFormat($default = 'html')
@@ -10311,8 +10141,7 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function validate($rules, $params = null)
         {
-                        /** @var \Illuminate\Http\Request $instance */
-                        return $instance->__invoke($rules, $params);
+                        return \Illuminate\Http\Request::validate($rules, $params);
         }
         
         /**
@@ -10320,10 +10149,9 @@ namespace Illuminate\Support\Facades {
          *
          * @static 
          */ 
-        public static function hasValidSignature($absolute = null)
+        public static function hasValidSignature($absolute = true)
         {
-                        /** @var \Illuminate\Http\Request $instance */
-                        return $instance->__invoke($absolute);
+                        return \Illuminate\Http\Request::hasValidSignature($absolute);
         }
          
     }
@@ -14522,6 +14350,7 @@ namespace Encore\Admin\Facades {
     /**
      * Class Admin.
      *
+     * @see \Encore\Admin\Admin
      */ 
     class Admin {
         
@@ -14569,6 +14398,7 @@ namespace Encore\Admin\Facades {
          * Build a tree.
          *
          * @param $model
+         * @param \Closure|null $callable
          * @return \Encore\Admin\Tree 
          * @static 
          */ 
@@ -14633,8 +14463,22 @@ namespace Encore\Admin\Facades {
         }
         
         /**
+         * 
+         *
+         * @param array $menu
+         * @return array 
+         * @static 
+         */ 
+        public static function menuLinks($menu = array())
+        {
+                        /** @var \Encore\Admin\Admin $instance */
+                        return $instance->menuLinks($menu);
+        }
+        
+        /**
          * Set admin title.
          *
+         * @param string $title
          * @return void 
          * @static 
          */ 
@@ -14646,7 +14490,7 @@ namespace Encore\Admin\Facades {
         /**
          * Get admin title.
          *
-         * @return \Config 
+         * @return string 
          * @static 
          */ 
         public static function title()
@@ -14656,15 +14500,40 @@ namespace Encore\Admin\Facades {
         }
         
         /**
-         * Get current login user.
+         * 
          *
-         * @return mixed 
+         * @param null|string $favicon
+         * @return string|void 
+         * @static 
+         */ 
+        public static function favicon($favicon = null)
+        {
+                        /** @var \Encore\Admin\Admin $instance */
+                        return $instance->favicon($favicon);
+        }
+        
+        /**
+         * Get the currently authenticated user.
+         *
+         * @return \App\Models\User|null 
          * @static 
          */ 
         public static function user()
         {
                         /** @var \Encore\Admin\Admin $instance */
                         return $instance->user();
+        }
+        
+        /**
+         * Attempt to get the guard from the local cache.
+         *
+         * @return \Illuminate\Contracts\Auth\Guard|\Illuminate\Contracts\Auth\StatefulGuard 
+         * @static 
+         */ 
+        public static function guard()
+        {
+                        /** @var \Encore\Admin\Admin $instance */
+                        return $instance->guard();
         }
         
         /**
@@ -14693,15 +14562,28 @@ namespace Encore\Admin\Facades {
         }
         
         /**
-         * Register the auth routes.
+         * Register the laravel-admin builtin routes.
          *
          * @return void 
+         * @deprecated Use Admin::routes() instead();
          * @static 
          */ 
         public static function registerAuthRoutes()
         {
                         /** @var \Encore\Admin\Admin $instance */
                         $instance->registerAuthRoutes();
+        }
+        
+        /**
+         * Register the laravel-admin builtin routes.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function routes()
+        {
+                        /** @var \Encore\Admin\Admin $instance */
+                        $instance->routes();
         }
         
         /**
@@ -14740,6 +14622,17 @@ namespace Encore\Admin\Facades {
         }
         
         /**
+         * Bootstrap the admin application.
+         *
+         * @static 
+         */ 
+        public static function bootstrap()
+        {
+                        /** @var \Encore\Admin\Admin $instance */
+                        return $instance->bootstrap();
+        }
+        
+        /**
          * 
          *
          * @static 
@@ -14754,7 +14647,7 @@ namespace Encore\Admin\Facades {
          * Add css or get all css.
          *
          * @param null $css
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|void 
+         * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View 
          * @static 
          */ 
         public static function css($css = null)
@@ -14766,7 +14659,7 @@ namespace Encore\Admin\Facades {
          * 
          *
          * @param null $css
-         * @return array|void 
+         * @return array|null 
          * @static 
          */ 
         public static function baseCss($css = null)
@@ -14778,7 +14671,7 @@ namespace Encore\Admin\Facades {
          * Add js or get all js.
          *
          * @param null $js
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|void 
+         * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View 
          * @static 
          */ 
         public static function js($js = null)
@@ -14790,7 +14683,7 @@ namespace Encore\Admin\Facades {
          * Add js or get all js.
          *
          * @param null $js
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|void 
+         * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View 
          * @static 
          */ 
         public static function headerJs($js = null)
@@ -14802,7 +14695,7 @@ namespace Encore\Admin\Facades {
          * 
          *
          * @param null $js
-         * @return array|void 
+         * @return array|null 
          * @static 
          */ 
         public static function baseJs($js = null)
@@ -14814,12 +14707,37 @@ namespace Encore\Admin\Facades {
          * 
          *
          * @param string $script
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|void 
+         * @param bool $deferred
+         * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View 
          * @static 
          */ 
-        public static function script($script = '')
+        public static function script($script = '', $deferred = false)
         {
-                        return \Encore\Admin\Admin::script($script);
+                        return \Encore\Admin\Admin::script($script, $deferred);
+        }
+        
+        /**
+         * 
+         *
+         * @param string $style
+         * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View 
+         * @static 
+         */ 
+        public static function style($style = '')
+        {
+                        return \Encore\Admin\Admin::style($style);
+        }
+        
+        /**
+         * 
+         *
+         * @param string $html
+         * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View 
+         * @static 
+         */ 
+        public static function html($html = '')
+        {
+                        return \Encore\Admin\Admin::html($html);
         }
         
         /**
@@ -15266,8 +15184,6 @@ namespace  {
     class Config extends \Illuminate\Support\Facades\Config {}
 
     class Cookie extends \Illuminate\Support\Facades\Cookie {}
-
-    class Crypt extends \Illuminate\Support\Facades\Crypt {}
 
     class DB extends \Illuminate\Support\Facades\DB {}
 
